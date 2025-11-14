@@ -1111,9 +1111,11 @@ skill-seekers scrape --config configs/godot.json
 ### Getting Started
 - **[BULLETPROOF_QUICKSTART.md](BULLETPROOF_QUICKSTART.md)** - 🎯 **START HERE** if you're new!
 - **[QUICKSTART.md](QUICKSTART.md)** - Quick start for experienced users
+- **[COPILOT_QUICKSTART.md](docs/COPILOT_QUICKSTART.md)** - 🤖 **NEW!** GitHub Copilot quick start
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### Guides
+- **[docs/COPILOT_GUIDE.md](docs/COPILOT_GUIDE.md)** - 🤖 **NEW!** Complete GitHub Copilot guide
 - **[docs/LARGE_DOCUMENTATION.md](docs/LARGE_DOCUMENTATION.md)** - Handle 10K-40K+ page docs
 - **[ASYNC_SUPPORT.md](ASYNC_SUPPORT.md)** - Async mode guide (2-3x faster scraping)
 - **[docs/ENHANCEMENT.md](docs/ENHANCEMENT.md)** - AI enhancement guide
