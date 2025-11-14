@@ -1,5 +1,3 @@
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/yusufkaraaslan-skill-seekers-badge.png)](https://mseep.ai/app/yusufkaraaslan-skill-seekers)
-
 # Skill Seeker
 
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/yusufkaraaslan/Skill_Seekers/releases/tag/v2.0.0)
@@ -12,22 +10,28 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/skill-seekers.svg)](https://pypi.org/project/skill-seekers/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/skill-seekers.svg)](https://pypi.org/project/skill-seekers/)
 
-**Automatically convert documentation websites, GitHub repositories, and PDFs into Claude AI skills in minutes.**
+**Automatically convert documentation websites, GitHub repositories, and PDFs into Claude AI skills or GitHub Copilot knowledge bases in minutes.**
 
 > 📋 **[View Development Roadmap & Tasks](https://github.com/users/yusufkaraaslan/projects/2)** - 134 tasks across 10 categories, pick any to contribute!
 
 ## What is Skill Seeker?
 
-Skill Seeker is an automated tool that transforms documentation websites, GitHub repositories, and PDF files into production-ready [Claude AI skills](https://www.anthropic.com/news/skills). Instead of manually reading and summarizing documentation, Skill Seeker:
+Skill Seeker is an automated tool that transforms documentation websites, GitHub repositories, and PDF files into production-ready AI knowledge bases. It supports both:
+- **[Claude AI skills](https://www.anthropic.com/news/skills)** - Interactive Q&A and assistance
+- **[GitHub Copilot knowledge bases](https://docs.github.com/en/copilot)** - Code completion and suggestions
+
+Instead of manually reading and summarizing documentation, Skill Seeker:
 
 1. **Scrapes** multiple sources (docs, GitHub repos, PDFs) automatically
 2. **Analyzes** code repositories with deep AST parsing
 3. **Detects** conflicts between documentation and code implementation
 4. **Organizes** content into categorized reference files
 5. **Enhances** with AI to extract best examples and key concepts
-6. **Packages** everything into an uploadable `.zip` file for Claude
+6. **Packages** into either:
+   - Claude AI skills (`.zip` files for upload)
+   - GitHub Copilot knowledge bases (`.github/copilot-instructions.md`)
 
-**Result:** Get comprehensive Claude skills for any framework, API, or tool in 20-40 minutes instead of hours of manual work.
+**Result:** Get comprehensive AI knowledge bases for any framework, API, or tool in 20-40 minutes instead of hours of manual work.
 
 ## Why Use This?
 
@@ -87,6 +91,14 @@ Skill Seeker is an automated tool that transforms documentation websites, GitHub
 
 ### ✅ Quality Assurance
 - ✅ **Fully Tested** - 379 tests with comprehensive coverage
+
+### 🤖 GitHub Copilot Integration (**NEW - v2.0.0**)
+- ✅ **Copilot Knowledge Base Generator** - Create `.github/copilot-instructions.md` files
+- ✅ **Code Pattern Extraction** - Extract common patterns for Copilot suggestions
+- ✅ **API Reference Generation** - Optimized API docs for code completion
+- ✅ **Example Organization** - Language-specific code examples
+- ✅ **Dual Output** - Generate both Claude skills AND Copilot knowledge bases
+- ✅ **IDE Integration** - Works with GitHub Copilot in VS Code, JetBrains, etc.
 
 ---
 
@@ -236,7 +248,43 @@ skill-seekers github --repo django/django \
 
 **Time:** ~5-10 minutes | **Quality:** Production-ready | **Cost:** Free
 
-### Unified Multi-Source Scraping (**NEW - v2.0.0**)
+### GitHub Copilot Knowledge Base (**NEW - v2.0.0**)
+
+**The Problem:** GitHub Copilot needs project context to provide better code suggestions. Manually writing `.github/copilot-instructions.md` is time-consuming.
+
+**The Solution:** Automatically generate Copilot-optimized knowledge bases from any documentation.
+
+```bash
+# 1. Scrape documentation
+skill-seekers scrape --config configs/react.json
+
+# 2. Generate Copilot knowledge base
+skill-seekers copilot --config configs/react.json --data-dir output/react_data/
+
+# 3. Copy to your project
+cp output/react_copilot/.github/copilot-instructions.md your-project/.github/
+
+# Result: Better AI code suggestions in VS Code!
+```
+
+**Time:** ~25 minutes (scraping) + ~1 minute (generation) | **Quality:** Production-ready | **Cost:** Free
+
+**What You Get:**
+- ✅ `.github/copilot-instructions.md` - Main instruction file
+- ✅ `docs/code-patterns.md` - Common coding patterns
+- ✅ `docs/api-reference.md` - API documentation
+- ✅ `examples/` - Language-specific code examples
+- ✅ Optimized for GitHub Copilot's context window
+
+**How It Works:**
+1. Scrapes documentation and extracts code patterns
+2. Organizes content by categories and use cases
+3. Generates Copilot-optimized markdown files
+4. Creates `.github/copilot-instructions.md` for your repo
+
+**Full Guide:** See [docs/COPILOT_GUIDE.md](docs/COPILOT_GUIDE.md) for complete documentation.
+
+### Unified Multi-Source Scraping
 
 **The Problem:** Documentation and code often drift apart. Docs might be outdated, missing features that exist in code, or documenting features that were removed.
 

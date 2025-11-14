@@ -12,6 +12,7 @@ Commands:
     github      Scrape GitHub repository
     pdf         Extract from PDF file
     unified     Multi-source scraping (docs + GitHub + PDF)
+    copilot     Generate GitHub Copilot knowledge base
     enhance     AI-powered enhancement (local, no API key)
     package     Package skill into .zip file
     upload      Upload skill to Claude
@@ -156,6 +157,16 @@ For more information: https://github.com/yusufkaraaslan/Skill_Seekers
     estimate_parser.add_argument("config", help="Config JSON file")
     estimate_parser.add_argument("--max-discovery", type=int, help="Max pages to discover")
 
+    # === copilot subcommand ===
+    copilot_parser = subparsers.add_parser(
+        "copilot",
+        help="Generate GitHub Copilot knowledge base",
+        description="Convert scraped data into GitHub Copilot-optimized format"
+    )
+    copilot_parser.add_argument("--config", required=True, help="Config JSON file")
+    copilot_parser.add_argument("--data-dir", required=True, help="Scraped data directory")
+    copilot_parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
+
     return parser
 
 
@@ -267,6 +278,13 @@ def main(argv: Optional[List[str]] = None) -> int:
             if args.max_discovery:
                 sys.argv.extend(["--max-discovery", str(args.max_discovery)])
             return estimate_main() or 0
+
+        elif args.command == "copilot":
+            from skill_seekers.cli.copilot_generator import main as copilot_main
+            sys.argv = ["copilot_generator.py", "--config", args.config, "--data-dir", args.data_dir]
+            if args.verbose:
+                sys.argv.append("--verbose")
+            return copilot_main() or 0
 
         else:
             print(f"Error: Unknown command '{args.command}'", file=sys.stderr)
