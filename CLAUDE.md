@@ -2,12 +2,27 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 🎯 Current Status (November 11, 2025)
+## 🎯 Current Status (November 14, 2025)
 
-**Version:** v2.0.0 (Production Ready - Published on PyPI!)
-**Active Development:** Flexible, incremental task-based approach
+**Version:** v2.0.0+ (GitHub Copilot Support Added!)
+**Active Development:** Dual-target approach - Claude Skills + GitHub Copilot
 
 ### Recent Updates (This Week):
+
+**🤖 NEW FEATURE: GitHub Copilot Integration! (v2.0.0+)**
+- **🎯 Dual Output**: Generate both Claude Skills AND GitHub Copilot knowledge bases
+- **📝 Copilot Generator**: New `skill-seekers copilot` command
+- **📁 `.github/copilot-instructions.md`**: Generate Copilot-optimized instruction files
+- **📚 Code Patterns**: Extract and organize code patterns by language
+- **🔍 API Reference**: Generate Copilot-friendly API documentation
+- **✅ 11 New Tests**: Full test coverage for Copilot features (390 total tests passing)
+- **📖 Documentation**: Comprehensive COPILOT_GUIDE.md added
+
+**Architecture Change:**
+- Previously: Claude AI Skills only (`.zip` packages)
+- Now: **Dual support** - Claude Skills + GitHub Copilot knowledge bases
+- Both formats generated from same scraped data
+- No breaking changes to existing functionality
 
 **🎉 MAJOR MILESTONE: Published on PyPI! (v2.0.0)**
 - **📦 PyPI Publication**: Install with `pip install skill-seekers` - https://pypi.org/project/skill-seekers/
@@ -129,14 +144,39 @@ export ANTHROPIC_API_KEY=sk-ant-...
 ### Quick Start - Use a Preset
 
 ```bash
-# Single-source scraping (documentation only)
+# Single-source scraping (documentation only) - Claude Skills
 skill-seekers scrape --config configs/godot.json
 skill-seekers scrape --config configs/react.json
 skill-seekers scrape --config configs/vue.json
 skill-seekers scrape --config configs/django.json
 skill-seekers scrape --config configs/laravel.json
 skill-seekers scrape --config configs/fastapi.json
+
+# Generate GitHub Copilot knowledge base (NEW!)
+skill-seekers copilot --config configs/react.json --data-dir output/react_data/
 ```
+
+### GitHub Copilot Knowledge Base Generation (**NEW - v2.0.0+**)
+
+```bash
+# Complete workflow: Scrape + Generate Copilot format
+skill-seekers scrape --config configs/react.json
+skill-seekers copilot --config configs/react.json --data-dir output/react_data/
+
+# Copy to your project
+cp output/react_copilot/.github/copilot-instructions.md your-project/.github/
+
+# Result: Better AI code suggestions in VS Code!
+```
+
+**What Gets Generated:**
+- `.github/copilot-instructions.md` - Main instruction file for Copilot
+- `.github/copilot-config.json` - Configuration metadata
+- `docs/code-patterns.md` - Common coding patterns extracted
+- `docs/api-reference.md` - API documentation optimized for Copilot
+- `examples/` - Code examples organized by language
+
+**See full guide:** [docs/COPILOT_GUIDE.md](docs/COPILOT_GUIDE.md)
 
 ### Unified Multi-Source Scraping (**NEW - v2.0.0**)
 
@@ -305,7 +345,7 @@ skill-seekers estimate configs/vue.json --max-discovery 2000
 
 ## Repository Architecture
 
-### File Structure (v2.0.0 - Modern Python Packaging)
+### File Structure (v2.0.0+ - Modern Python Packaging + Copilot Support)
 
 ```
 Skill_Seekers/
@@ -322,15 +362,18 @@ Skill_Seekers/
 │       │   ├── pdf_scraper.py      # PDF scraper
 │       │   ├── unified_scraper.py  # Unified multi-source scraper
 │       │   ├── merge_sources.py    # Source merger
-│       │   └── conflict_detector.py # Conflict detection
+│       │   ├── conflict_detector.py # Conflict detection
+│       │   ├── copilot_generator.py # GitHub Copilot generator (NEW!)
+│       │   └── main.py             # Unified CLI entry point
 │       └── mcp/                # MCP server integration
 │           └── server.py
-├── tests/                      # Test suite (379 tests passing)
+├── tests/                      # Test suite (390 tests passing)
 │   ├── test_scraper_features.py
 │   ├── test_config_validation.py
 │   ├── test_integration.py
 │   ├── test_mcp_server.py
-│   ├── test_unified.py         # (12 tests need fixes)
+│   ├── test_unified.py
+│   ├── test_copilot_generator.py  # Copilot tests (NEW!)
 │   └── ...
 ├── configs/                    # Preset configurations (24 configs)
 │   ├── godot.json
@@ -341,7 +384,9 @@ Skill_Seekers/
 │   ├── CLAUDE.md               # This file
 │   ├── ENHANCEMENT.md          # Enhancement guide
 │   ├── UPLOAD_GUIDE.md         # Upload instructions
-│   └── UNIFIED_SCRAPING.md     # Unified scraping guide
+│   ├── UNIFIED_SCRAPING.md     # Unified scraping guide
+│   ├── COPILOT_GUIDE.md        # GitHub Copilot guide (NEW!)
+│   └── ...
 ├── README.md                   # User documentation
 ├── CHANGELOG.md                # Release history
 ├── FUTURE_RELEASES.md          # Roadmap
@@ -349,23 +394,28 @@ Skill_Seekers/
     ├── {name}_data/            # Scraped raw data (cached)
     │   ├── pages/*.json        # Individual page data
     │   └── summary.json        # Scraping summary
-    └── {name}/                 # Built skill directory
-        ├── SKILL.md            # Main skill file
-        ├── SKILL.md.backup     # Backup (if enhanced)
-        ├── references/         # Categorized documentation
-        │   ├── index.md
-        │   ├── getting_started.md
-        │   ├── api.md
-        │   └── ...
-        ├── scripts/            # Empty (user scripts)
-        └── assets/             # Empty (user assets)
+    ├── {name}/                 # Built Claude skill directory
+    │   ├── SKILL.md            # Main skill file
+    │   ├── SKILL.md.backup     # Backup (if enhanced)
+    │   ├── references/         # Categorized documentation
+    │   └── ...
+    └── {name}_copilot/         # Built Copilot knowledge base (NEW!)
+        ├── .github/
+        │   ├── copilot-instructions.md  # Main Copilot file
+        │   └── copilot-config.json      # Config metadata
+        ├── docs/
+        │   ├── code-patterns.md         # Code patterns
+        │   └── api-reference.md         # API docs
+        ├── examples/                    # Code examples by language
+        └── README.md                    # Usage instructions
 ```
 
-**Key Changes in v2.0.0:**
+**Key Changes in v2.0.0+:**
 - **src/ layout**: Modern Python packaging structure
 - **pyproject.toml**: PEP 621 compliant configuration
-- **Entry points**: `skill-seekers` CLI with subcommands
+- **Entry points**: `skill-seekers` CLI with subcommands including `copilot`
 - **Published to PyPI**: `pip install skill-seekers`
+- **Dual output**: Claude Skills + GitHub Copilot knowledge bases
 
 ### Data Flow
 
@@ -393,6 +443,17 @@ Skill_Seekers/
    - Input: Skill .zip file
    - Process: Upload to Claude AI via API
    - Output: Skill available in Claude
+
+6. **Copilot Generation Phase** (NEW - via copilot_generator.py):
+   - Input: Scraped JSON data from `output/{name}_data/`
+   - Process: Extract patterns → Organize by language → Generate Copilot files
+   - Output: `output/{name}_copilot/` directory with:
+     - `.github/copilot-instructions.md` (main instruction file)
+     - `.github/copilot-config.json` (metadata)
+     - `docs/code-patterns.md` (extracted patterns)
+     - `docs/api-reference.md` (API documentation)
+     - `examples/*.md` (language-specific examples)
+     - `README.md` (usage instructions)
 
 ### Configuration File Structure
 
@@ -538,6 +599,40 @@ nano configs/myframework.json
 skill-seekers scrape --config configs/myframework.json
 ```
 
+### Complete Copilot Workflow (**NEW**)
+
+```bash
+# 1. Scrape documentation
+skill-seekers scrape --config configs/react.json
+# Time: 20-40 minutes (first time)
+
+# 2. Generate Copilot knowledge base
+skill-seekers copilot --config configs/react.json --data-dir output/react_data/
+# Time: ~1 minute
+
+# 3. Review generated files
+ls output/react_copilot/.github/
+# copilot-instructions.md  copilot-config.json
+
+# 4. Copy to your project
+cp output/react_copilot/.github/copilot-instructions.md ~/my-react-app/.github/
+
+# 5. Optional: Copy supporting docs
+cp -r output/react_copilot/docs ~/my-react-app/docs/copilot/
+cp -r output/react_copilot/examples ~/my-react-app/docs/copilot/
+
+# 6. Commit to repository
+cd ~/my-react-app
+git add .github/copilot-instructions.md
+git commit -m "Add Copilot instructions for React"
+git push
+
+# 7. Start coding with better AI suggestions!
+code .
+```
+
+**Result:** GitHub Copilot in VS Code will now provide better suggestions based on React documentation patterns.
+
 ## Testing & Verification
 
 ### Finding the Right CSS Selectors
@@ -670,10 +765,23 @@ The correct command uses the local `cli/package_skill.py` in the repository root
 - **Unified scraper**: `src/skill_seekers/cli/unified_scraper.py`
 - **Conflict detection**: `src/skill_seekers/cli/conflict_detector.py`
 - **Source merger**: `src/skill_seekers/cli/merge_sources.py`
+- **Copilot generator**: `src/skill_seekers/cli/copilot_generator.py` (**NEW!**)
 - **Package tool**: `src/skill_seekers/cli/package_skill.py`
 - **Upload tool**: `src/skill_seekers/cli/upload_skill.py`
 - **MCP server**: `src/skill_seekers/mcp/server.py`
 - **Entry points**: `pyproject.toml` (project.scripts section)
+
+**Copilot Generator** (`src/skill_seekers/cli/copilot_generator.py`):
+- **Main class**: `CopilotKnowledgeGenerator`
+- **Directory creation**: `_create_directory_structure()`
+- **Data loading**: `_load_scraped_data()`
+- **Instructions generation**: `_generate_copilot_instructions()`
+- **Config generation**: `_generate_copilot_config()`
+- **Pattern extraction**: `_generate_code_patterns()`
+- **API documentation**: `_generate_api_documentation()`
+- **Example organization**: `_generate_examples()`
+- **README generation**: `_generate_readme()`
+- **Main entry**: `main()`
 
 ## Enhancement Details
 
