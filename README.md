@@ -1,43 +1,57 @@
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/yusufkaraaslan-skill-seekers-badge.png)](https://mseep.ai/app/yusufkaraaslan-skill-seekers)
-
-# Skill Seeker
+# Skill Seeker - GitHub Copilot Documentation Builder
 
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/yusufkaraaslan/Skill_Seekers/releases/tag/v2.0.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![MCP Integration](https://img.shields.io/badge/MCP-Integrated-blue.svg)](https://modelcontextprotocol.io)
+[![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Optimized-blue.svg)](https://github.com/features/copilot)
 [![Tested](https://img.shields.io/badge/Tests-379%20Passing-brightgreen.svg)](tests/)
 [![Project Board](https://img.shields.io/badge/Project-Board-purple.svg)](https://github.com/users/yusufkaraaslan/projects/2)
 [![PyPI version](https://badge.fury.io/py/skill-seekers.svg)](https://pypi.org/project/skill-seekers/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/skill-seekers.svg)](https://pypi.org/project/skill-seekers/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/skill-seekers.svg)](https://pypi.org/project/skill-seekers/)
 
-**Automatically convert documentation websites, GitHub repositories, and PDFs into Claude AI skills in minutes.**
+**Automatically convert documentation websites, GitHub repositories, and PDFs into GitHub Copilot knowledge bases for better AI-powered code suggestions.**
+
+> 🤖 **Primary Focus:** Generate `.github/copilot-instructions.md` files for enhanced Copilot experience  
+> 🔄 **Backward Compatible:** Can also generate Claude AI skills (legacy format)
 
 > 📋 **[View Development Roadmap & Tasks](https://github.com/users/yusufkaraaslan/projects/2)** - 134 tasks across 10 categories, pick any to contribute!
 
 ## What is Skill Seeker?
 
-Skill Seeker is an automated tool that transforms documentation websites, GitHub repositories, and PDF files into production-ready [Claude AI skills](https://www.anthropic.com/news/skills). Instead of manually reading and summarizing documentation, Skill Seeker:
+Skill Seeker is a **GitHub Copilot-first** documentation builder that transforms documentation websites, GitHub repositories, and PDF files into optimized `.github/copilot-instructions.md` files that enhance your IDE's AI code suggestions.
+
+**Primary Purpose:** Generate GitHub Copilot knowledge bases for better code completion, inline suggestions, and framework-aware development assistance.
+
+**How it works:**
 
 1. **Scrapes** multiple sources (docs, GitHub repos, PDFs) automatically
 2. **Analyzes** code repositories with deep AST parsing
-3. **Detects** conflicts between documentation and code implementation
-4. **Organizes** content into categorized reference files
-5. **Enhances** with AI to extract best examples and key concepts
-6. **Packages** everything into an uploadable `.zip` file for Claude
+3. **Extracts** code patterns, APIs, and best practices
+4. **Organizes** content optimized for Copilot's context window
+5. **Generates** `.github/copilot-instructions.md` files ready for your repository
+6. **[Legacy]** Can also package as Claude AI skills (`.zip` format) for backward compatibility
 
-**Result:** Get comprehensive Claude skills for any framework, API, or tool in 20-40 minutes instead of hours of manual work.
+**Result:** Get GitHub Copilot documentation that makes your IDE's AI suggestions 10x more relevant to your framework in just 20-40 minutes.
 
 ## Why Use This?
 
-- 🎯 **For Developers**: Create skills from documentation + GitHub repos with conflict detection
-- 🎮 **For Game Devs**: Generate skills for game engines (Godot docs + GitHub, Unity, etc.)
-- 🔧 **For Teams**: Combine internal docs + code repositories into single source of truth
-- 📚 **For Learners**: Build comprehensive skills from docs, code examples, and PDFs
-- 🔍 **For Open Source**: Analyze repos to find documentation gaps and outdated examples
+- 🎯 **For Developers**: Get better Copilot suggestions trained on your framework's documentation
+- 🎮 **For Game Devs**: Generate Copilot instructions for game engines (Godot, Unity, Unreal)
+- 🔧 **For Teams**: Create team-wide Copilot knowledge bases from internal documentation
+- 📚 **For Learners**: Learn frameworks faster with AI that knows the actual documentation
+- 🔍 **For Open Source**: Share Copilot instructions with your project contributors
+- 💼 **For Enterprises**: Standardize AI assistance across development teams
 
 ## Key Features
+
+### 🤖 GitHub Copilot Integration (PRIMARY)
+- ✅ **Copilot Knowledge Base Generator** - Create `.github/copilot-instructions.md` files
+- ✅ **Code Pattern Extraction** - Extract common patterns for Copilot suggestions
+- ✅ **API Reference Generation** - Optimized API docs for code completion
+- ✅ **Example Organization** - Language-specific code examples
+- ✅ **Context Window Optimization** - Designed for Copilot's token limits
+- ✅ **IDE Integration** - Works with GitHub Copilot in VS Code, JetBrains, etc.
 
 ### 🌐 Documentation Scraping
 - ✅ **llms.txt Support** - Automatically detects and uses LLM-ready documentation files (10x faster)
@@ -63,121 +77,110 @@ Skill Seeker is an automated tool that transforms documentation websites, GitHub
 - ✅ **Conflict Detection** - Compare documented APIs vs actual code implementation
 - ✅ **MCP Integration** - Natural language: "Scrape GitHub repo facebook/react"
 
-### 🔄 Unified Multi-Source Scraping (**NEW - v2.0.0**)
-- ✅ **Combine Multiple Sources** - Mix documentation + GitHub + PDF in one skill
+### 🔄 Unified Multi-Source Scraping
+- ✅ **Combine Multiple Sources** - Mix documentation + GitHub + PDF
 - ✅ **Conflict Detection** - Automatically finds discrepancies between docs and code
 - ✅ **Intelligent Merging** - Rule-based or AI-powered conflict resolution
 - ✅ **Transparent Reporting** - Side-by-side comparison with ⚠️ warnings
 - ✅ **Documentation Gap Analysis** - Identifies outdated docs and undocumented features
-- ✅ **Single Source of Truth** - One skill showing both intent (docs) and reality (code)
-- ✅ **Backward Compatible** - Legacy single-source configs still work
-
-### 🤖 AI & Enhancement
-- ✅ **AI-Powered Enhancement** - Transforms basic templates into comprehensive guides
-- ✅ **No API Costs** - FREE local enhancement using Claude Code Max
-- ✅ **MCP Server for Claude Code** - Use directly from Claude Code with natural language
 
 ### ⚡ Performance & Scale
 - ✅ **Async Mode** - 2-3x faster scraping with async/await (use `--async` flag)
 - ✅ **Large Documentation Support** - Handle 10K-40K+ page docs with intelligent splitting
-- ✅ **Router/Hub Skills** - Intelligent routing to specialized sub-skills
-- ✅ **Parallel Scraping** - Process multiple skills simultaneously
+- ✅ **Parallel Scraping** - Process multiple frameworks simultaneously
 - ✅ **Checkpoint/Resume** - Never lose progress on long scrapes
 - ✅ **Caching System** - Scrape once, rebuild instantly
 
 ### ✅ Quality Assurance
-- ✅ **Fully Tested** - 379 tests with comprehensive coverage
+- ✅ **Fully Tested** - 422 tests with comprehensive coverage
+
+### 🔄 Backward Compatibility (Legacy Claude AI Support)
+- ✅ **Claude Skills Generation** - Can still generate `.zip` packages for Claude AI
+- ✅ **AI-Powered Enhancement** - Local enhancement using Claude Code Max (optional)
+- ✅ **MCP Server** - Claude Code integration for automated workflows
+- ✅ **Upload Support** - Direct upload to Claude AI via API
 
 ---
 
-## 📦 Now Available on PyPI!
+## 📦 Installation
 
-**Skill Seekers is now published on the Python Package Index!** Install with a single command:
+**Skill Seekers is available on PyPI:**
 
 ```bash
 pip install skill-seekers
 ```
 
-Get started in seconds. No cloning, no setup - just install and run. See installation options below.
+Get started in seconds. No cloning needed - just install and generate Copilot documentation.
 
 ---
 
-## Quick Start
+## 🚀 Quick Start - GitHub Copilot (Primary Use Case)
 
-### Option 1: Install from PyPI (Recommended)
+### 3-Step Workflow
 
 ```bash
-# Install from PyPI (easiest method!)
-pip install skill-seekers
-
-# Use the unified CLI
+# 1. Scrape documentation
 skill-seekers scrape --config configs/react.json
-skill-seekers github --repo facebook/react
-skill-seekers enhance output/react/
-skill-seekers package output/react/
+
+# 2. Generate Copilot knowledge base
+skill-seekers copilot --config configs/react.json --data-dir output/react_data/
+
+# 3. Copy to your project
+cp output/react_copilot/.github/copilot-instructions.md ~/my-react-app/.github/
+
+# That's it! GitHub Copilot now knows React's documentation 🎉
 ```
 
 **Time:** ~25 minutes | **Quality:** Production-ready | **Cost:** Free
 
-📖 **New to Skill Seekers?** Check out our [Quick Start Guide](QUICKSTART.md) or [Bulletproof Guide](BULLETPROOF_QUICKSTART.md)
+📖 **New to this tool?** Check out our [Copilot Quick Start Guide](docs/COPILOT_QUICKSTART.md)
 
-### Option 2: Install via uv (Modern Python Tool)
+### Alternative Installation Methods
+
+<details>
+<summary>Install via uv (Modern Python Tool)</summary>
 
 ```bash
-# Install with uv (fast, modern alternative)
+# Install with uv
 uv tool install skill-seekers
 
-# Or run directly without installing
-uv tool run --from skill-seekers skill-seekers scrape --config https://raw.githubusercontent.com/yusufkaraaslan/Skill_Seekers/main/configs/react.json
-
-# Unified CLI - simple commands
-skill-seekers scrape --config configs/react.json
-skill-seekers github --repo facebook/react
-skill-seekers package output/react/
+# Or run directly
+uv tool run --from skill-seekers skill-seekers copilot --config configs/react.json --data-dir output/react_data/
 ```
+</details>
 
-**Time:** ~25 minutes | **Quality:** Production-ready | **Cost:** Free
-
-### Option 3: Development Install (From Source)
+<details>
+<summary>Install from Source (For Development)</summary>
 
 ```bash
 # Clone and install in editable mode
 git clone https://github.com/yusufkaraaslan/Skill_Seekers.git
 cd Skill_Seekers
 pip install -e .
+```
+</details>
 
-# Use the unified CLI
+### Legacy: Claude AI Skills (Backward Compatibility)
+
+If you need to generate Claude AI skills (legacy `.zip` format):
+
+```bash
+# Scrape documentation
 skill-seekers scrape --config configs/react.json
+
+# Optional: Enhance with AI
+skill-seekers enhance output/react/
+
+# Package as .zip
+skill-seekers package output/react/
+
+# Upload to Claude
+skill-seekers upload output/react.zip
 ```
 
-### Option 4: Use from Claude Code (MCP Integration)
+**Note:** Claude Skills are maintained for backward compatibility but are not the primary focus.
 
-```bash
-# One-time setup (5 minutes)
-./setup_mcp.sh
-
-# Then in Claude Code, just ask:
-"Generate a React skill from https://react.dev/"
-"Scrape PDF at docs/manual.pdf and create skill"
-```
-
-**Time:** Automated | **Quality:** Production-ready | **Cost:** Free
-
-### Option 5: Legacy CLI (Backwards Compatible)
-
-```bash
-# Install dependencies
-pip3 install requests beautifulsoup4
-
-# Run scripts directly (old method)
-python3 src/skill_seekers/cli/doc_scraper.py --config configs/react.json
-
-# Upload output/react.zip to Claude - Done!
-```
-
-**Time:** ~25 minutes | **Quality:** Production-ready | **Cost:** Free
-
-## Usage Examples
+---
 
 ### Documentation Scraping
 
@@ -236,7 +239,43 @@ skill-seekers github --repo django/django \
 
 **Time:** ~5-10 minutes | **Quality:** Production-ready | **Cost:** Free
 
-### Unified Multi-Source Scraping (**NEW - v2.0.0**)
+### GitHub Copilot Knowledge Base (**NEW - v2.0.0**)
+
+**The Problem:** GitHub Copilot needs project context to provide better code suggestions. Manually writing `.github/copilot-instructions.md` is time-consuming.
+
+**The Solution:** Automatically generate Copilot-optimized knowledge bases from any documentation.
+
+```bash
+# 1. Scrape documentation
+skill-seekers scrape --config configs/react.json
+
+# 2. Generate Copilot knowledge base
+skill-seekers copilot --config configs/react.json --data-dir output/react_data/
+
+# 3. Copy to your project
+cp output/react_copilot/.github/copilot-instructions.md your-project/.github/
+
+# Result: Better AI code suggestions in VS Code!
+```
+
+**Time:** ~25 minutes (scraping) + ~1 minute (generation) | **Quality:** Production-ready | **Cost:** Free
+
+**What You Get:**
+- ✅ `.github/copilot-instructions.md` - Main instruction file
+- ✅ `docs/code-patterns.md` - Common coding patterns
+- ✅ `docs/api-reference.md` - API documentation
+- ✅ `examples/` - Language-specific code examples
+- ✅ Optimized for GitHub Copilot's context window
+
+**How It Works:**
+1. Scrapes documentation and extracts code patterns
+2. Organizes content by categories and use cases
+3. Generates Copilot-optimized markdown files
+4. Creates `.github/copilot-instructions.md` for your repo
+
+**Full Guide:** See [docs/COPILOT_GUIDE.md](docs/COPILOT_GUIDE.md) for complete documentation.
+
+### Unified Multi-Source Scraping
 
 **The Problem:** Documentation and code often drift apart. Docs might be outdated, missing features that exist in code, or documenting features that were removed.
 
@@ -1063,9 +1102,11 @@ skill-seekers scrape --config configs/godot.json
 ### Getting Started
 - **[BULLETPROOF_QUICKSTART.md](BULLETPROOF_QUICKSTART.md)** - 🎯 **START HERE** if you're new!
 - **[QUICKSTART.md](QUICKSTART.md)** - Quick start for experienced users
+- **[COPILOT_QUICKSTART.md](docs/COPILOT_QUICKSTART.md)** - 🤖 **NEW!** GitHub Copilot quick start
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### Guides
+- **[docs/COPILOT_GUIDE.md](docs/COPILOT_GUIDE.md)** - 🤖 **NEW!** Complete GitHub Copilot guide
 - **[docs/LARGE_DOCUMENTATION.md](docs/LARGE_DOCUMENTATION.md)** - Handle 10K-40K+ page docs
 - **[ASYNC_SUPPORT.md](ASYNC_SUPPORT.md)** - Async mode guide (2-3x faster scraping)
 - **[docs/ENHANCEMENT.md](docs/ENHANCEMENT.md)** - AI enhancement guide
