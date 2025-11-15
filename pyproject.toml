@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "skill-seekers"
 version = "2.0.0"
-description = "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills or GitHub Copilot knowledge bases"
+description = "Convert documentation websites into GitHub Copilot knowledge bases (.github/copilot-instructions.md). Backward compatible with Claude AI skills."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -13,13 +13,13 @@ authors = [
     {name = "Yusuf Karaaslan"}
 ]
 keywords = [
-    "claude",
+    "github-copilot",
+    "copilot",
     "ai",
     "documentation",
-    "scraping",
-    "skills",
-    "llm",
-    "mcp",
+    "code-completion",
+    "ide",
+    "developer-tools",
     "automation"
 ]
 classifiers = [

@@ -2,9 +2,12 @@
 
 ## Overview
 
-Successfully adapted Skill Seekers from a Claude AI Skills-only tool to a **dual-target** system that generates both:
-1. **Claude AI Skills** (existing functionality - unchanged)
-2. **GitHub Copilot Knowledge Bases** (new functionality - added)
+Successfully adapted Skill Seekers to be a **GitHub Copilot-first** documentation builder with backward compatibility for Claude AI Skills:
+
+1. **GitHub Copilot Knowledge Bases** (primary functionality)
+2. **Claude AI Skills** (legacy/backward compatibility)
+
+**Architecture Philosophy:** Copilot-first design with Claude support maintained for existing users who need it.
 
 ---
 
@@ -133,22 +136,22 @@ Documentation URL
 [SCRAPE] (existing)
     ↓
 Scraped Data (output/{name}_data/)
-    ↓        ↓
-    ↓        [COPILOT] (new)
-    ↓            ↓
-    ↓        Copilot Knowledge Base
-    ↓        (output/{name}_copilot/)
-    ↓            ├── .github/copilot-instructions.md
-    ↓            ├── .github/copilot-config.json
-    ↓            ├── docs/code-patterns.md
-    ↓            ├── docs/api-reference.md
-    ↓            └── examples/*.md
-    ↓
-[BUILD] (existing)
-    ↓
-Claude Skill (output/{name}/)
-    ├── SKILL.md
-    └── references/*.md
+    ↓        
+    ├→ [COPILOT] (PRIMARY - new)
+    │      ↓
+    │  Copilot Knowledge Base
+    │  (output/{name}_copilot/)
+    │      ├── .github/copilot-instructions.md
+    │      ├── .github/copilot-config.json
+    │      ├── docs/code-patterns.md
+    │      ├── docs/api-reference.md
+    │      └── examples/*.md
+    │
+    └→ [BUILD] (LEGACY - existing)
+           ↓
+       Claude Skill (output/{name}/)
+           ├── SKILL.md
+           └── references/*.md
 ```
 
 ### File Output Structure

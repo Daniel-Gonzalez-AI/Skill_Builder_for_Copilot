@@ -2,27 +2,27 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 🎯 Current Status (November 14, 2025)
+## 🎯 Current Status (November 15, 2025)
 
-**Version:** v2.0.0+ (GitHub Copilot Support Added!)
-**Active Development:** Dual-target approach - Claude Skills + GitHub Copilot
+**Version:** v2.0.0+ (GitHub Copilot Primary Focus)
+**Active Development:** Copilot-first with Claude backward compatibility
 
 ### Recent Updates (This Week):
 
-**🤖 NEW FEATURE: GitHub Copilot Integration! (v2.0.0+)**
-- **🎯 Dual Output**: Generate both Claude Skills AND GitHub Copilot knowledge bases
-- **📝 Copilot Generator**: New `skill-seekers copilot` command
-- **📁 `.github/copilot-instructions.md`**: Generate Copilot-optimized instruction files
-- **📚 Code Patterns**: Extract and organize code patterns by language
-- **🔍 API Reference**: Generate Copilot-friendly API documentation
-- **✅ 11 New Tests**: Full test coverage for Copilot features (390 total tests passing)
-- **📖 Documentation**: Comprehensive COPILOT_GUIDE.md added
+**🤖 ARCHITECTURE CHANGE: GitHub Copilot Primary Focus! (v2.0.0+)**
+- **🎯 Primary Target**: GitHub Copilot knowledge bases (`.github/copilot-instructions.md`)
+- **📝 Copilot Generator**: `skill-seekers copilot` command
+- **🔄 Backward Compatible**: Claude Skills still supported (legacy feature)
+- **📁 Optimized Output**: Copilot-first design with context window optimization
+- **📚 Code Patterns**: Language-specific pattern extraction
+- **🔍 API Reference**: Copilot-friendly API documentation
+- **✅ 422 Tests**: Full test coverage (11 Copilot-specific tests)
+- **📖 Documentation**: COPILOT_GUIDE.md, COPILOT_QUICKSTART.md
 
-**Architecture Change:**
-- Previously: Claude AI Skills only (`.zip` packages)
-- Now: **Dual support** - Claude Skills + GitHub Copilot knowledge bases
-- Both formats generated from same scraped data
-- No breaking changes to existing functionality
+**Architecture Priority:**
+- Primary: GitHub Copilot knowledge base generation
+- Legacy: Claude AI Skills (maintained for backward compatibility)
+- Philosophy: Copilot-first design, Claude support for existing users
 
 **🎉 MAJOR MILESTONE: Published on PyPI! (v2.0.0)**
 - **📦 PyPI Publication**: Install with `pip install skill-seekers` - https://pypi.org/project/skill-seekers/
@@ -92,7 +92,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Skill Seeker automatically converts any documentation website into a Claude AI skill. It scrapes documentation, organizes content, extracts code patterns, and packages everything into an uploadable `.zip` file for Claude.
+**Skill Seeker** is a GitHub Copilot-first documentation builder that automatically converts any documentation website into optimized `.github/copilot-instructions.md` files. It scrapes documentation, extracts code patterns, organizes content for Copilot's context window, and packages everything into IDE-ready knowledge bases.
+
+**Primary Purpose:** Generate GitHub Copilot knowledge bases for enhanced code completion and AI-powered development assistance.
+
+**Legacy Support:** Can also generate Claude AI skills (`.zip` packages) for backward compatibility with existing workflows.
 
 ## Prerequisites
 
@@ -141,19 +145,26 @@ export ANTHROPIC_API_KEY=sk-ant-...
 
 ## Core Commands
 
-### Quick Start - Use a Preset
+### Quick Start - GitHub Copilot (Primary)
 
 ```bash
-# Single-source scraping (documentation only) - Claude Skills
-skill-seekers scrape --config configs/godot.json
+# Generate Copilot knowledge base for React
 skill-seekers scrape --config configs/react.json
-skill-seekers scrape --config configs/vue.json
-skill-seekers scrape --config configs/django.json
-skill-seekers scrape --config configs/laravel.json
-skill-seekers scrape --config configs/fastapi.json
-
-# Generate GitHub Copilot knowledge base (NEW!)
 skill-seekers copilot --config configs/react.json --data-dir output/react_data/
+
+# Works with any framework
+skill-seekers scrape --config configs/django.json
+skill-seekers copilot --config configs/django.json --data-dir output/django_data/
+```
+
+### Legacy: Claude Skills (Backward Compatibility)
+
+```bash
+# Generate Claude Skills (legacy format)
+skill-seekers scrape --config configs/godot.json
+skill-seekers enhance output/godot/  # Optional
+skill-seekers package output/godot/
+skill-seekers upload output/godot.zip  # Optional
 ```
 
 ### GitHub Copilot Knowledge Base Generation (**NEW - v2.0.0+**)
